@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:grpc_redux_demo/client.dart';
 import 'package:redux/redux.dart';
 
 import 'redux/actions.dart';
 import 'redux/app_state.dart';
 import 'redux/reducers.dart';
+
+final client = RickTerminalClient();
 
 void main() {
   final Store<AppState> store = Store(reducer,
@@ -37,15 +40,16 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              StoreConnector<AppState, AppState>(
-                converter: (store) => store.state,
-                builder: (context, vm) => vm.character,
+              StoreConnector<AppState, Widget>(
+                converter: (store) => store.state.image,
+                builder: (context, vm) => vm,
               ),
               const SizedBox(
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () => store.dispatch(loadCharacterThunkAction(store)),
+                onPressed: () =>
+                    store.dispatch(loadCharacterThunkAction(store)),
                 child: const Text('Get random character'),
               ),
             ],

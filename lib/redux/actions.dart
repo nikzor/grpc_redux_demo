@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:grpc_redux_demo/client.dart';
+import 'package:grpc_redux_demo/main.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,6 @@ class LoadedCharacterAction {
 ThunkAction loadCharacterThunkAction = (Store store) async {
   store.dispatch(GetCharacterAction());
   final request = Request();
-  final client = RickTerminalClient();
   final character = await client.getCharacter(request);
   final image = await _loadImage(character.url);
   store.dispatch(
