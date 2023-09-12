@@ -5,10 +5,10 @@ import 'actions.dart';
 import 'app_state.dart';
 
 AppState reducer(AppState state, dynamic action) => AppState(
-    character: _CharacterReducer(state.character, action));
+    character: _characterReducer(state.character, action));
 
 
-Reducer<Widget> _CharacterReducer = combineReducers([
+Reducer<Widget> _characterReducer = combineReducers([
   TypedReducer(_getCharacterReducer),
   TypedReducer(_loadedCharacterReducer),
 ]);
