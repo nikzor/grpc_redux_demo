@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+message Character {
+  int32 id = 1;
+  string url = 2;
+  string name = 3;
+}
+
+message Request {
+}
+
+service Rick {
+  rpc getCharacter(Request) returns(Character);
+}

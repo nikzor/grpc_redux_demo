@@ -1,0 +1,37 @@
+[
+  {
+    "id" : 0,
+    "url" : "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+    "name" : "Rick Sanchez"
+  },
+  {
+    "id" : 1,
+    "url" : "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
+    "name" : "Morty Smith"
+  },
+  {
+    "id" : 2,
+    "url" : "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
+    "name" : "Summer Smith"
+  },
+  {
+    "id" : 3,
+    "url" : "https://rickandmortyapi.com/api/character/avatar/4.jpeg",
+    "name" : "Beth Smith"
+  },
+  {
+    "id" : 4,
+    "url" : "https://rickandmortyapi.com/api/character/avatar/5.jpeg",
+    "name" : "Jerry Smith"
+  },
+  {
+    "id" : 5,
+    "url" : "https://rickandmortyapi.com/api/character/avatar/6.jpeg",
+    "name" : "Abadango Cluster Princess"
+  },
+  {
+    "id" : 6,
+    "url" : "https://rickandmortyapi.com/api/character/avatar/7.jpeg",
+    "name" : "Abradolf Lincler"
+  }
+]
