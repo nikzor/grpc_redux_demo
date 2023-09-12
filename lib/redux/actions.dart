@@ -12,9 +12,9 @@ class GetImage {
   GetImage({required this.url});
 }
 
-class GetCharacterAction{}
+class GetCharacterAction {}
 
-class LoadedCharacterAction{
+class LoadedCharacterAction {
   final Widget image;
   final String name;
 
@@ -24,16 +24,15 @@ class LoadedCharacterAction{
 ThunkAction loadCharacterThunkAction = (Store store) async {
   store.dispatch(GetCharacterAction());
   final request = Request();
-  RickTerminalClient().getCharacter(request).then(
-        (character) => _loadImage(character.url).then(
-          (image) => store.dispatch(
-            LoadedCharacterAction(
-              image: image,
-              name: character.name,
-            ),
-          ),
-        ),
-      );
+  final client = RickTerminalClient();
+  final character = await client.getCharacter(request);
+  final image = await _loadImage(character.url);
+  store.dispatch(
+    LoadedCharacterAction(
+      image: image,
+      name: character.name,
+    ),
+  );
 };
 
 Future<Widget> _loadImage(String url) async {
