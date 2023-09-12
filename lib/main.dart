@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:grpc_redux_demo/character_widget.dart';
 import 'package:grpc_redux_demo/client.dart';
 import 'package:redux/redux.dart';
 
@@ -10,10 +11,10 @@ import 'redux/reducers.dart';
 final client = RickTerminalClient();
 
 void main() {
-  final Store<AppState> store = Store(reducer,
-      initialState: AppState(
-        character: const Icon(Icons.cloud_download),
-      ));
+  final Store<AppState> store = Store(
+    reducer(),
+    initialState: const InitialState(Icon(Icons.cloud_download)),
+  );
   runApp(
     StoreProvider(
       store: store,
@@ -40,10 +41,18 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              StoreConnector<AppState, Widget>(
-                converter: (store) => store.state.image,
-                builder: (context, vm) => vm,
-              ),
+              StoreBuilder<AppState>(
+                  builder: (context, store) => switch (store.state) {
+                        InitialState() => const Icon(Icons.cloud_download),
+                        LoadingState() =>
+                          const Center(child: CircularProgressIndicator()),
+                        SuccessState(name: final name, image: final image) =>
+                          CharacterWidget(
+                            name: name,
+                            image: image,
+                          ),
+                        ErrorState() => const Text('Ошибка загрузки'),
+                      }),
               const SizedBox(
                 height: 20,
               ),
